@@ -35,5 +35,17 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-*.jpg
-*.png
+# EAS
+.eas/
+
+# 不要忽略这些文件，它们对构建很重要
+!ios/
+!android/
+!app.json
+!eas.json
+
+# 图片资源可以选择性忽略，但确保构建需要的资源不被忽略
+# *.jpg
+# *.png
+!assets/**/*.jpg
+!assets/**/*.png

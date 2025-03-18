@@ -1,0 +1,31 @@
+{
+  "build": {
+    "development": {
+      "env": {
+        "PATH": "/usr/local/bin:$PATH"
+      },
+      "distribution": "internal",
+      "ios": {
+        "image": "latest",
+        "simulator": true,
+        "credentialsSource": "remote"
+      },
+      "cache": {
+        "key": "eas-build-cache-v1"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "ios": {
+        "image": "latest",
+        "credentialsSource": "remote"
+      }
+    },
+    "production": {
+      "ios": {
+        "image": "latest",
+        "credentialsSource": "remote"
+      }
+    }
+  }
+}

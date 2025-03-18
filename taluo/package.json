@@ -7,7 +7,9 @@
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "eas-build-pre-install": "npm config set legacy-peer-deps true",
+    "eas-build-post-install": "cd ios && bundle config set --local path 'vendor/bundle' && bundle install && /usr/local/bin/pod install || (echo 'Pod install failed' && exit 1)"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.23.1",

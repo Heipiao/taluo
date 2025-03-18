@@ -1,21 +1,33 @@
 {
   "cli": {
-    "version": ">= 15.0.15",
+    "version": ">= 5.9.1",
     "appVersionSource": "remote"
   },
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium",
+        "image": "latest"
+      }
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium",
+        "image": "latest"
+      }
     },
     "production": {
-      "autoIncrement": true
+      "ios": {
+        "resourceClass": "m-medium",
+        "image": "latest",
+        "credentialsSource": "remote",
+        "autoIncrement": true,
+        "buildConfiguration": "Release",
+        "simulator": true 
+      }
     }
-  },
-  "submit": {
-    "production": {}
   }
 }
