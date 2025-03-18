@@ -27,7 +27,6 @@ Thumbs.db
 *.pid
 *.seed
 *.pid.lock
-*.lock
 *.backup
 
 # Android
@@ -77,3 +76,10 @@ fastlane/test_output
 # Build artifacts
 *.apk
 *.aab
+
+# 确保不忽略资源文件
+!assets/
+!assets/icon.png
+!assets/adaptive-icon.png
+!assets/splash-icon.png
+!assets/favicon.png
