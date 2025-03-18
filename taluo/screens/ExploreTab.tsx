@@ -9,6 +9,11 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+
+type RootStackParamList = {
+  FortuneTab: { buttonId: string } | undefined;
+};
 
 const { width } = Dimensions.get('window');
 
@@ -28,6 +33,7 @@ const bottomButtons = [
 ];
 
 const ExploreTab: React.FC = () => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   // 渲染走马灯中的每一项
   const renderCarouselItem = (item: { id: string; image: any }) => {
     return (
@@ -62,7 +68,9 @@ const ExploreTab: React.FC = () => {
           <TouchableOpacity
             key={button.id}
             style={styles.bottomButton}
-            onPress={() => console.log(button.title)}
+            onPress={() => {
+              navigation.navigate('FortuneTab', { buttonId: button.id });
+            }}
           >
             <Text style={styles.bottomButtonText}>{button.title}</Text>
           </TouchableOpacity>

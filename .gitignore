@@ -31,20 +31,10 @@ Thumbs.db
 *.backup
 
 # Android
-android/.cxx/
-android/app/build/
-android/.gradle/
-android/local.properties
-android/.idea/
-android/.settings/
-android/captures/
+android
 
 # iOS
-ios/Pods/
-ios/.DS_Store
-ios/build/
-ios/xcuserdata/
-ios/*.xcodeproj/project.xcworkspace/
+ios
 
 # Metro Bundler
 .expo/
