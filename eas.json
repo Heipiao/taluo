@@ -8,11 +8,13 @@
       "ios": {
         "image": "latest",
         "simulator": true,
-        "credentialsSource": "remote"
+        "credentialsSource": "remote",
+        "buildConfiguration": "Debug"
       },
       "cache": {
         "key": "eas-build-cache-v1"
-      }
+      },
+      "developmentClient": true
     },
     "preview": {
       "distribution": "internal",

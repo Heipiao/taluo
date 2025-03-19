@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 import { GiftedChat, Bubble, Time } from 'react-native-gifted-chat';
 import CustomMessageComponent  from '../components/CustomMessage/CustomMessage';
 import { CustomMessage as CustomMessageType } from '../interfaces/MessageInterfaces';
@@ -172,6 +172,15 @@ const FortuneTab: React.FC = () => {
     if (!message.trim() || streaming) return;
 
     try {
+      // 先清空输入框内容，再收起键盘
+      setMessage('');
+      
+      // 使用setTimeout确保在UI更新后再收起键盘
+      setTimeout(() => {
+        console.log('延迟收起键盘...');
+        Keyboard.dismiss();
+      }, 100);
+      
       setStreaming(true);
       // 创建用户消息
       const userMessage: CustomMessageType = {
@@ -186,7 +195,6 @@ const FortuneTab: React.FC = () => {
 
       // 添加用户消息到消息列表
       setMessages(prevMessages => GiftedChat.append(prevMessages, [userMessage]));
-      setMessage('');
       setTyping(true);
 
       // 构建历史消息数组
@@ -262,7 +270,11 @@ const FortuneTab: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView 
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
+    >
       <View style={styles.header}>
         <Image 
           source={theme?.id ? Deity.getDeityById(theme.id)?.imagePath : require('../assets/images/caishen.jpg')}
@@ -359,7 +371,7 @@ const FortuneTab: React.FC = () => {
           }]}>→</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
