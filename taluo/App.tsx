@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SignupScreen from './screens/SignupScreen';
@@ -6,6 +6,7 @@ import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
+import IAPManager from './utils/IAPManager';
 
 type RootStackParamList = {
   Login: undefined;
@@ -17,6 +18,14 @@ type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function App() {
+  // 初始化 IAP
+  useEffect(() => {
+    IAPManager.initialize();
+    return () => {
+      IAPManager.cleanup();
+    };
+  }, []);
+
   return (
     <AuthProvider>
       <ThemeProvider>
